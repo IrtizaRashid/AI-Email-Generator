@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Email Generator</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-envelope-open-text"></i>
+                    <h1>AI Email Generator</h1>
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Input Form -->
+            <div class="form-card">
+                <h2><i class="fas fa-edit"></i> Email Details</h2>
+                
+                <form id="emailForm">
+                    <!-- Recipient Name -->
+                    <div class="form-group">
+                        <label for="recipient">
+                            <i class="fas fa-user"></i> Recipient Name *
+                        </label>
+                        <input type="text" id="recipient" name="recipient" placeholder="John Doe" required>
+                    </div>
+
+                    <!-- Sender Name -->
+                    <div class="form-group">
+                        <label for="sender">
+                            <i class="fas fa-user-tag"></i> Sender Name *
+                        </label>
+                        <input type="text" id="sender" name="sender" placeholder="Jane Smith" required>
+                    </div>
+
+                    <!-- Subject -->
+                    <div class="form-group">
+                        <label for="subject">
+                            <i class="fas fa-heading"></i> Subject *
+                        </label>
+                        <input type="text" id="subject" name="subject" placeholder="Meeting Request" required>
+                    </div>
+
+                    <!-- Email Purpose -->
+                    <div class="form-group">
+                        <label for="purpose">
+                            <i class="fas fa-bullseye"></i> Email Purpose *
+                        </label>
+                        <input type="text" id="purpose" name="purpose" placeholder="Request a meeting to discuss project" required>
+                    </div>
+
+                    <!-- Key Points -->
+                    <div class="form-group">
+                        <label for="points">
+                            <i class="fas fa-list-ul"></i> Key Points
+                        </label>
+                        <textarea id="points" name="points" rows="4" placeholder="Discuss timeline, budget, and deliverables"></textarea>
+                    </div>
+
+                    <!-- Tone Selection -->
+                    <div class="form-group">
+                        <label for="tone">
+                            <i class="fas fa-comment-dots"></i> Tone
+                        </label>
+                        <select id="tone" name="tone">
+                            <option value="Professional">Professional</option>
+                            <option value="Friendly">Friendly</option>
+                            <option value="Formal">Formal</option>
+                            <option value="Casual">Casual</option>
+                            <option value="Persuasive">Persuasive</option>
+                            <option value="Apologetic">Apologetic</option>
+                            <option value="Thank You">Thank You</option>
+                        </select>
+                    </div>
+
+                    <!-- Email Length -->
+                    <div class="form-group">
+                        <label for="length">
+                            <i class="fas fa-ruler"></i> Email Length
+                        </label>
+                        <select id="length" name="length">
+                            <option value="Short">Short</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="Long">Long</option>
+                        </select>
+                    </div>
+
+                    <!-- Language -->
+                    <div class="form-group">
+                        <label for="language">
+                            <i class="fas fa-language"></i> Language
+                        </label>
+                        <input type="text" id="language" name="language" placeholder="English" value="English">
+                    </div>
+
+                    <!-- Additional Instructions -->
+                    <div class="form-group">
+                        <label for="instructions">
+                            <i class="fas fa-info-circle"></i> Additional Instructions
+                        </label>
+                        <textarea id="instructions" name="instructions" rows="3" placeholder="Any specific requirements or details to include"></textarea>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary" id="generateBtn">
+                            <i class="fas fa-magic"></i> Generate Email
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="regenerateBtn" disabled>
+                            <i class="fas fa-redo"></i> Regenerate
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="clearBtn">
+                            <i class="fas fa-trash"></i> Clear
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Generated Email Output -->
+            <div class="output-card">
+                <div class="output-header">
+                    <h2><i class="fas fa-file-alt"></i> Generated Email</h2>
+                    <div class="output-actions">
+                        <button class="btn-icon" id="copyBtn" title="Copy to clipboard" disabled>
+                            <i class="fas fa-copy"></i>
+                        </button>
+                        <button class="btn-icon" id="downloadBtn" title="Download as TXT" disabled>
+                            <i class="fas fa-download"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="editor-container">
+                    <textarea id="emailOutput" class="email-editor" placeholder="Your generated email will appear here..." readonly></textarea>
+                </div>
+
+                <!-- Loading Spinner -->
+                <div class="loading-overlay" id="loadingOverlay">
+                    <div class="spinner"></div>
+                    <p>Generating your email...</p>
+                </div>
+
+                <!-- Error Message -->
+                <div class="error-message" id="errorMessage"></div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Powered by Ollama (llama3.2:3b) | Built with Flask</p>
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
